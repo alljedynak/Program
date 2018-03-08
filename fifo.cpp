@@ -9,12 +9,8 @@ fifo_string::fifo_string()
 
 fifo_string::~fifo_string()
 {
-    _item *tmp=push_pointer;
-    while(tmp->p!=NULL){
-        tmp=tmp->p;
-        delete tmp->n;
-    }
 	delete take_pointer;
+	delete push_pointer;
 }
 
 fifo_string::_item::_item(const char* item)
@@ -66,7 +62,6 @@ std::string fifo_string::get(int i) const
 	_item *iterator = take_pointer;
 	int x = 0;
 	while(x < i) {
-        if(iterator==NULL) break;
 		iterator = iterator->n;
 		x++;	
 	}
